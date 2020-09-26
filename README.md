@@ -2,8 +2,11 @@
 Simple script to download OpenCore Bootloader and some of the kexts (Kernel Extensions) it needs.
 
 Requirements to run this script:
+
 -Python 3.7 or higher
+
 -wget for python
+
 -An internet connection
 
 wget for python can be installed with 'pip install wget'.
