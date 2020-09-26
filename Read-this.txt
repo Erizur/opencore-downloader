@@ -1,0 +1,8 @@
+Thanks for reading this!
+This tool is unstable, on a really early beta, and was made in 3 hours. Any problems with the script can be asked in the issues page in the github.
+
+Incase you are having errors because of some modules missing, install wget on python by using:
+
+-pip install wget
+
+WARNING: Don't delete the OCD-Downloads folder or the OpenCore or the Kexts folder, it will make the script malfunction!
