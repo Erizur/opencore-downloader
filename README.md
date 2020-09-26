@@ -7,4 +7,5 @@ Requirements to run this script:
 -An internet connection
 
 wget for python can be installed with 'pip install wget'.
+
 This script is in a unstable state and may break at any moment, this isn't an official tool either.
