@@ -5,4 +5,4 @@ Incase you are having errors because of some modules missing, install wget on py
 
 -pip install wget
 
-WARNING: Don't delete the OCD-Downloads folder or the OpenCore or the Kexts folder, it will make the script malfunction!
+WARNING: Don't delete the OCD-Downloads folder or the OpenCore or the Kexts folder while running the script, as it will make it crash.

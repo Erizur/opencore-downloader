@@ -16,6 +16,14 @@ def clear():
 def menu():
     
     clear()
+    if not os.path.exists('OCD-Downloads'):
+            os.mkdir("OCD-Downloads")
+    os.chdir("OCD-Downloads")
+    if not os.path.exists('OpenCore'):
+            os.mkdir("OpenCore")
+    if not os.path.exists('Kexts'):
+            os.mkdir("Kexts")
+    os.chdir(os.path.pardir)
     print("Options:\n 1.- Download Latest OpenCore\n 2.- Download Latest Kexts\n 3.- COMING SOON.\n 4.- Quit")
     print("")
     option = input("Select an option: ")
