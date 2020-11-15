@@ -2,8 +2,10 @@ import os
 from time import sleep
 from os import system, name
 import wget
+import json
+import urllib.request
 
-programver="0.0.1"
+programver="0.0.3"
 
 def clear(): 
   
@@ -46,35 +48,29 @@ def menu():
 
 def downloadoc():
     clear()
-    debugurl='https://github.com/acidanthera/OpenCorePkg/releases/download/0.6.1/OpenCore-0.6.1-DEBUG.zip'
-    releaseurl='https://github.com/acidanthera/OpenCorePkg/releases/download/0.6.1/OpenCore-0.6.1-RELEASE.zip'
+    
     print("Which one?")
-    print("1) Release")
-    print("2) Debug")
+    print("1) Debug")
+    print("\n NOTE: You can't download the Release version of OpenCore yet, i'm working on re-adding it.")
     option = input("Select an option: ")
     if option == "1":
-        os.chdir("OCD-Downloads")
-        os.chdir("OpenCore")
-        if not os.path.exists('Release'):
-            os.mkdir("Release")
-        os.chdir("Release")
-        print("Alright! Now downloading...")
-        wget.download(releaseurl)
-        print("\nDone!")
-        os.chdir(os.path.pardir)
-        os.chdir(os.path.pardir)
-        os.chdir(os.path.pardir)
-        sleep(2)
-        menu()
-        
-    elif option == "2":
+        url = "https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"
+        data = urllib.request.urlopen(url).read().decode()
+        obj = json.loads(data)
+        with open('latest_oc_url', 'w') as json_file:
+            json.dump(obj['assets_url'], json_file)
+
+        with open('latest_oc_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("OpenCore")
         if not os.path.exists('Debug'):
             os.mkdir("Debug")
         os.chdir("Debug")
         print("Alright! Now downloading...")
-        wget.download(debugurl)
+        wget.download(newobj[0]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
@@ -100,7 +96,7 @@ def downloadkexts():
     print("")
     option = input("Select an option: ")
     if option == "1":
-        url = 'https://github.com/acidanthera/VirtualSMC/releases/download/1.1.6/VirtualSMC-1.1.6-RELEASE.zip'
+        url = 'https://github.com/acidanthera/VirtualSMC/releases/download/1.1.8/VirtualSMC-1.1.8-RELEASE.zip'
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -122,7 +118,7 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "3":
-        url='https://github.com/acidanthera/Lilu/releases/download/1.4.7/Lilu-1.4.7-RELEASE.zip'
+        url='https://github.com/acidanthera/Lilu/releases/download/1.4.9/Lilu-1.4.9-RELEASE.zip'
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -133,7 +129,7 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "4":
-        url='https://github.com/acidanthera/WhateverGreen/releases/download/1.4.2/WhateverGreen-1.4.2-RELEASE.zip'
+        url=''
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -144,7 +140,7 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "5":
-        url='https://github.com/acidanthera/IntelMausi/releases/download/1.0.3/IntelMausi-1.0.3-RELEASE.zip'
+        url='https://github.com/acidanthera/IntelMausi/releases/download/1.0.4/IntelMausi-1.0.4-RELEASE.zip'
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -199,7 +195,7 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "10":
-        url='https://github.com/acidanthera/AppleALC/releases/download/1.5.2/AppleALC-1.5.2-RELEASE.zip'
+        url='https://github.com/acidanthera/AppleALC/releases/download/1.5.4/AppleALC-1.5.4-RELEASE.zip'
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
