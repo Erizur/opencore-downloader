@@ -7,6 +7,17 @@ import urllib.request
 
 programver="0.0.3"
 
+url = "https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"
+data = urllib.request.urlopen(url).read().decode()
+obj = json.loads(data)
+with open('latest_oc_url', 'w') as json_file:
+    json.dump(obj['assets_url'], json_file)
+
+with open('latest_oc_url', 'r') as json_file:
+    newurl = json.load(json_file)
+    newdata = urllib.request.urlopen(newurl).read().decode()
+    newobj = json.loads(newdata)
+
 def clear(): 
   
     if name == 'nt': 
@@ -51,19 +62,9 @@ def downloadoc():
     
     print("Which one?")
     print("1) Debug")
-    print("\n NOTE: You can't download the Release version of OpenCore yet, i'm working on re-adding it.")
+    print("2) Release")
     option = input("Select an option: ")
     if option == "1":
-        url = "https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"
-        data = urllib.request.urlopen(url).read().decode()
-        obj = json.loads(data)
-        with open('latest_oc_url', 'w') as json_file:
-            json.dump(obj['assets_url'], json_file)
-
-        with open('latest_oc_url', 'r') as json_file:
-            newurl = json.load(json_file)
-            newdata = urllib.request.urlopen(newurl).read().decode()
-            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("OpenCore")
         if not os.path.exists('Debug'):
@@ -71,6 +72,20 @@ def downloadoc():
         os.chdir("Debug")
         print("Alright! Now downloading...")
         wget.download(newobj[0]['browser_download_url'])
+        print("\nDone!")
+        os.chdir(os.path.pardir)
+        os.chdir(os.path.pardir)
+        os.chdir(os.path.pardir)
+        sleep(2)
+        menu()
+    if option == "2":
+        os.chdir("OCD-Downloads")
+        os.chdir("OpenCore")
+        if not os.path.exists('Release'):
+            os.mkdir("Release")
+        os.chdir("Release")
+        print("Alright! Now downloading...")
+        wget.download(newobj[1]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
@@ -94,8 +109,11 @@ def downloadkexts():
     print("10) AppleALC")
     print("Q) Quit")
     print("")
+
     option = input("Select an option: ")
-    if option == "1":
+    if option == "Q":
+        menu()
+    elif option == "1":
         url = 'https://github.com/acidanthera/VirtualSMC/releases/download/1.1.8/VirtualSMC-1.1.8-RELEASE.zip'
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
@@ -205,8 +223,7 @@ def downloadkexts():
         os.chdir(os.path.pardir)
         sleep(2)
         downloadkexts()
-    elif option == "Q":
-        menu()
+
         
 
 
