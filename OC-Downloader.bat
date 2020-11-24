@@ -1,3 +1,3 @@
 @echo off
 cls
-py main.py
+py res_updater.py

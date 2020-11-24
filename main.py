@@ -5,18 +5,7 @@ import wget
 import json
 import urllib.request
 
-programver="0.0.3"
-
-url = "https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"
-data = urllib.request.urlopen(url).read().decode()
-obj = json.loads(data)
-with open('latest_oc_url', 'w') as json_file:
-    json.dump(obj['assets_url'], json_file)
-
-with open('latest_oc_url', 'r') as json_file:
-    newurl = json.load(json_file)
-    newdata = urllib.request.urlopen(newurl).read().decode()
-    newobj = json.loads(newdata)
+programver="0.0.4"
 
 def clear(): 
   
@@ -65,6 +54,10 @@ def downloadoc():
     print("2) Release")
     option = input("Select an option: ")
     if option == "1":
+        with open('latest_oc_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("OpenCore")
         if not os.path.exists('Debug'):
@@ -79,6 +72,10 @@ def downloadoc():
         sleep(2)
         menu()
     if option == "2":
+        with open('oc_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("OpenCore")
         if not os.path.exists('Release'):
@@ -107,18 +104,21 @@ def downloadkexts():
     print("8) RealtekRTL8100")
     print("9) USBInjectAll")
     print("10) AppleALC")
+    print("11) itlwm")
     print("Q) Quit")
-    print("")
 
     option = input("Select an option: ")
     if option == "Q":
         menu()
     elif option == "1":
-        url = 'https://github.com/acidanthera/VirtualSMC/releases/download/1.1.8/VirtualSMC-1.1.8-RELEASE.zip'
+        with open('vsmc_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
-        wget.download(url)
+        wget.download(newobj[1]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
@@ -136,33 +136,42 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "3":
-        url='https://github.com/acidanthera/Lilu/releases/download/1.4.9/Lilu-1.4.9-RELEASE.zip'
+        with open('lilu_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
-        wget.download(url)
+        wget.download(newobj[1]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
         sleep(2)
         downloadkexts()
     elif option == "4":
-        url=''
+        with open('weg_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
-        wget.download(url)
+        wget.download(newobj[1]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
         sleep(2)
         downloadkexts()
     elif option == "5":
-        url='https://github.com/acidanthera/IntelMausi/releases/download/1.0.4/IntelMausi-1.0.4-RELEASE.zip'
+        with open('mausi_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
-        wget.download(url)
+        wget.download(newobj[1]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
@@ -213,11 +222,28 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "10":
-        url='https://github.com/acidanthera/AppleALC/releases/download/1.5.4/AppleALC-1.5.4-RELEASE.zip'
+        with open('alc_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
-        wget.download(url)
+        wget.download(newobj[1]['browser_download_url'])
+        print("\nDone!")
+        os.chdir(os.path.pardir)
+        os.chdir(os.path.pardir)
+        sleep(2)
+        downloadkexts()
+    elif option == "11":
+        with open('itlwm_url', 'r') as json_file:
+            newurl = json.load(json_file)
+            newdata = urllib.request.urlopen(newurl).read().decode()
+            newobj = json.loads(newdata)
+        os.chdir("OCD-Downloads")
+        os.chdir("Kexts")
+        print("Alright! Now downloading...")
+        wget.download(newobj[2]['browser_download_url'])
         print("\nDone!")
         os.chdir(os.path.pardir)
         os.chdir(os.path.pardir)
