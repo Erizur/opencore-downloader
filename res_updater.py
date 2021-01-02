@@ -4,11 +4,17 @@ import json
 import urllib.request
 
 def getlatesturl(varurl, filename):
+    if not os.path.exists('.jsondat'):
+            os.mkdir('.jsondat')
     url = varurl
     data = urllib.request.urlopen(url).read().decode()
     obj = json.loads(data)
+    os.chdir('.jsondat')
     with open(f'{filename}', 'w') as json_file:
         json.dump(obj['assets_url'], json_file)
+    os.chdir(os.path.pardir)
+    
+    
 
 
 

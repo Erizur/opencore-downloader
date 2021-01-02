@@ -54,10 +54,12 @@ def downloadoc():
     print("2) Release")
     option = input("Select an option: ")
     if option == "1":
-        with open('latest_oc_url', 'r') as json_file:
+        os.chdir('.jsondat')
+        with open('oc_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("OpenCore")
         if not os.path.exists('Debug'):
@@ -72,10 +74,12 @@ def downloadoc():
         sleep(2)
         menu()
     if option == "2":
+        os.chdir('.jsondat')
         with open('oc_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("OpenCore")
         if not os.path.exists('Release'):
@@ -92,7 +96,8 @@ def downloadoc():
 
 def downloadkexts():
     clear()
-    print("There are only a few kexts at the moment, more will come soon.")
+    available = "11"
+    print(f"There are only {available} kexts at the moment, more will come soon.")
     print("WARNING: The kexts downloaded in here are the release kexts.")
     print("1) VirtualSMC")
     print("2) FakeSMC")
@@ -108,13 +113,15 @@ def downloadkexts():
     print("Q) Quit")
 
     option = input("Select an option: ")
-    if option == "Q":
+    if option == "Q" or option == "q":
         menu()
     elif option == "1":
+        os.chdir('.jsondat')
         with open('vsmc_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -136,10 +143,12 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "3":
+        os.chdir('.jsondat')
         with open('lilu_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -150,10 +159,12 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "4":
+        os.chdir('.jsondat')
         with open('weg_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -164,10 +175,12 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "5":
+        os.chdir('.jsondat')
         with open('mausi_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -222,10 +235,12 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "10":
+        os.chdir('.jsondat')
         with open('alc_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -236,10 +251,12 @@ def downloadkexts():
         sleep(2)
         downloadkexts()
     elif option == "11":
+        os.chdir('.jsondat')
         with open('itlwm_url', 'r') as json_file:
             newurl = json.load(json_file)
             newdata = urllib.request.urlopen(newurl).read().decode()
             newobj = json.loads(newdata)
+        os.chdir(os.path.pardir)
         os.chdir("OCD-Downloads")
         os.chdir("Kexts")
         print("Alright! Now downloading...")
@@ -249,7 +266,6 @@ def downloadkexts():
         os.chdir(os.path.pardir)
         sleep(2)
         downloadkexts()
-
         
 
 
