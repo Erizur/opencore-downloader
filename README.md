@@ -20,3 +20,4 @@ This script is in a unstable state and may break at any moment, this isn't an of
 * RehabMan for the FakeSMC, USBInjectAll and RealtekRTL8100 kexts.
 * Acidanthera for the VirtualSMC, AppleALC, Lilu and WhateverGreen kexts and the OpenCore Bootloader.
 * Mieze for the AtherosE2200Ethernet and RealtekRTL8111 kexts.
+* OpenIntelWireless for the itlwm kext.
