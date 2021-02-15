@@ -1,0 +1,1 @@
+python3 res_updater.py 
